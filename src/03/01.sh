@@ -12,7 +12,7 @@ sigmaDecimal=0
 for i in $(seq 1 $strLen)
 do
   # get the most frequent bit at position i, convert to a decimal value, and increment the gamma decimal
-  bit=$(cat $INPUT_FILE | cut -c $i | sort | uniq -c | sort -n | tail -n 1 | awk '{print $2}')
+  bit=$(cut -c $i $INPUT_FILE | sort | uniq -c | sort -n | tail -n 1 | awk '{print $2}')
   gammaDecimal=$(($gammaDecimal+(2**($strLen-$i))*$bit))
 
   # we can assume sigma is a binary inverse of gamma, so flip the bit and increment the sigma decimal the same way
