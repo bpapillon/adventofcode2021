@@ -71,12 +71,32 @@ def find_loser(order, boards)
   end
 end
 
+def play(order, boards)
+  results = {}
+  completed = {}
+  order.each do |number|
+    boards.each_with_index do |board, idx|
+      if !completed[idx] and board.mark(number)
+        if results[:winning_board].nil?
+          results[:winning_board] = board
+          results[:winning_number] = number
+        end
+        completed[idx] = true
+        if completed.length == boards.length
+          results[:losing_board] = board
+          results[:losing_number] = number
+          return results
+        end
+      end
+    end
+  end
+end
+
 input_file = 'inputs/04/01.txt'
 inputs = File.read(input_file).split("\n\n")
 order = inputs.shift.split(',').map(&:to_i)
 boards = inputs.map { |board| Board.new(board) }
-winning_board, winning_number = find_winner(order, boards)
-puts "Part 1: #{winning_board.sum * winning_number}"
 
-losing_board, losing_number = find_loser(order, boards)
-puts "Part 2: #{losing_board.sum * losing_number}"
+results = play(order, boards)
+puts "Part 1: #{results[:winning_board].sum * results[:winning_number]}"
+puts "Part 2: #{results[:losing_board].sum * results[:losing_number]}"
