@@ -1,7 +1,7 @@
-INPUT_FILE = 'inputs/05/01.txt'
 # INPUT_FILE = 'inputs/05/example.txt'
-inputs = File.read(INPUT_FILE).split("\n")
+INPUT_FILE = 'inputs/05/01.txt'
 
+inputs = File.read(INPUT_FILE).split("\n")
 diagram = Hash.new(0)
 inputs.each do |input|
   match = input.match(/^([0-9]+),([0-9]+) -> ([0-9]+),([0-9]+)$/)
