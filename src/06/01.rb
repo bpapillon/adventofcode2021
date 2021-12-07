@@ -1,5 +1,3 @@
-require 'json'
-
 # INPUT_FILE = 'inputs/06/example.txt'
 INPUT_FILE = 'inputs/06/01.txt'
 
