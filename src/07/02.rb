@@ -8,7 +8,7 @@ def calculate_gas(freq_map, val)
 end
 
 def gas(x, y)
-  1.upto((x - y).abs).reduce(0) { |accum, i| accum + i }
+  1.upto((x - y).abs).reduce(0, :+)
 end
 
 positions = File.read(INPUT_FILE).split(',').map(&:to_i)
