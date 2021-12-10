@@ -31,7 +31,7 @@ end
 def get_basins(rows)
   basins = []
   rows.each_with_index do |row, row_idx|
-    row.each_with_index do |char, char_idx|
+    row.each_with_index do |_, char_idx|
       basin = get_basin(rows, row_idx, char_idx)
       next if basin == nil
 
